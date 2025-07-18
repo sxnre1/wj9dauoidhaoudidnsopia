@@ -1257,10 +1257,13 @@
 </section>
 
 <script>
+// 상태 변수 추가
+let hasCheckedAccount = false;
+
 async function submitCharge() {
-  const name = document.getElementById("inputName").innerText.trim();
-  const amount = document.getElementById("inputAmount").innerText.trim();
-  const sender = document.getElementById("inputSender").innerText.trim();
+  const name = document.getElementById("inputName").value.trim();
+  const amount = document.getElementById("inputAmount").value.trim();
+  const sender = document.getElementById("inputSender").value.trim();
   const messageBox = document.getElementById("chargeMessage");
 
   if (!name || !amount || !sender) {
@@ -1268,11 +1271,25 @@ async function submitCharge() {
     return;
   }
 
+  // 1차: 계좌 정보 먼저 보여주기
+  if (!hasCheckedAccount) {
+    messageBox.style.display = 'block';
+    messageBox.innerHTML = `
+      <strong>📌 계좌명:</strong> 카카오뱅크<br>
+      <strong>📌 계좌번호:</strong> 7777-03-4613608<br>
+      <strong>📌 예금주:</strong> ㅇㅅㅇ<br><br>
+      <strong style="color: #ffb84d;">⚠️ 입금하신 후 한 번 더 누르시면 충전 요청이 접수됩니다.</strong>
+    `;
+    hasCheckedAccount = true;
+    return; // 여기서 종료 (첫 번째 클릭)
+  }
+
+  // 2차: 실제 요청 전송
   try {
     const res = await fetch('http://localhost:3000/charge', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, amount, sender })  // ✔️ 여기를 수정
+      body: JSON.stringify({ name, amount, sender })
     });
 
     if (!res.ok) throw new Error('서버 오류');
@@ -1280,14 +1297,10 @@ async function submitCharge() {
     messageBox.style.display = 'block';
     messageBox.innerHTML = '충전 요청이 정상적으로 접수되었습니다. 관리자 확인 후 처리됩니다.';
 
+    hasCheckedAccount = false; // 초기화
+
     setTimeout(() => {
       messageBox.style.display = 'none';
-      messageBox.innerHTML = `
-        <strong>📌 계좌명:</strong> 카카오뱅크<br>
-        <strong>📌 계좌번호:</strong> 7777-03-4613608<br>
-        <strong>📌 예금주:</strong> ㅇㅅㅇ<br><br>
-        <strong style="color: #ffb84d;">⚠️ 충전 신청 후 관리자가 확인 시 잔액이 충전됩니다.</strong>
-      `;
     }, 5 * 60 * 1000);
 
   } catch (err) {
