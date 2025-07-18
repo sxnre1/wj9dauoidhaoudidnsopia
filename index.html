@@ -1269,7 +1269,7 @@ async function submitCharge() {
   }
 
   try {
-    const res = await fetch('http://localhost:3000', {  // 백엔드 서버 charge API 주소
+    const res = await fetch('http://localhost:3000/charge', {  // 백엔드 서버 charge API 주소
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userName: name, amount, sender })  // 백엔드가 받는 키 이름에 맞춤
