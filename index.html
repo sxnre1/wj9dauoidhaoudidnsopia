@@ -625,74 +625,90 @@
       background-color: #4752c4;
     }
 
-    #webbuy {
-      padding: 20px;
-    }
+#webbuy {
+  padding: 20px;
+}
 
-    #webbuy .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
+#webbuy .product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
 
-    #webbuy.active {
-      display: flex;
-    }
+.product-card {
+  background-color: #2f3136;
+  border-left: 5px solid #5865F2;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.7);
+  color: #dcddde;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
 
-    .embed-card {
-      background-color: #2f3136;
-      border-left: 4px solid #5865f2;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgb(0 0 0 / 0.4);
-      padding: 16px;
-      width: 290px;
-      color: #dcddde;
-    }
+.embed-image {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
 
-    .embed-image {
-      width: 100%;
-      height: 140px;
-      background-color: #2f3136;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 6px;
-      overflow: hidden;
-    }
+.embed-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-    .embed-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
-    .embed-title {
-      margin-top: 10px;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
+.product-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #ffffff;
+}
 
-    .embed-desc {
-      margin-top: 6px;
-      color: #b9bbbe;
-    }
+.product-tag {
+  background-color: #5865F2;
+  color: white;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 5px;
+  font-weight: 600;
+}
 
-    .embed-button {
-      margin-top: 12px;
-      background-color: #5865f2;
-      border: none;
-      border-radius: 6px;
-      padding: 10px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
+.product-description {
+  font-size: 0.95rem;
+  color: #b9bbbe;
+  line-height: 1.3;
+  margin-bottom: 15px;
+  flex-grow: 1; /* 텍스트 공간 밀도 조절 */
+  user-select: text;
+}
 
-    .embed-button:hover {
-      background-color: #4752c4;
-    }
+.embed-button {
+  background-color: #5865f2;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.embed-button:hover {
+  background-color: #4752c4;
+}
 
 @media screen and (max-width: 700px) {
   /* 사이드바 */
@@ -1166,6 +1182,9 @@
 
   <div class="product-grid">
     <div class="product-card">
+      <div class="embed-image">
+        <img src="https://i.imgur.com/HLICXGN.gif" alt="니트로 프라임 이미지" />
+      </div>
       <div class="product-card-header">
         <div class="product-title">니트로 프라임 30일</div>
         <div class="product-tag">웹판기</div>
@@ -1173,11 +1192,13 @@
       <div class="product-description">
         파일 업로드 500MB, 모든 서버 이모지 사용 가능
       </div>
-      <img src="https://i.imgur.com/HLICXGN.gif" alt="니트로 프라임 이미지" style="border-radius: 8px; margin-top: 10px;">
-      <button class="embed-button" style="margin-top: 15px;">구매하기</button>
+      <button class="embed-button">구매하기</button>
     </div>
 
     <div class="product-card">
+      <div class="embed-image">
+        <img src="https://i.imgur.com/HLICXGN.gif" alt="니트로 베이직 이미지" />
+      </div>
       <div class="product-card-header">
         <div class="product-title">니트로 베이직 30일</div>
         <div class="product-tag">웹판기</div>
@@ -1185,11 +1206,13 @@
       <div class="product-description">
         파일 업로드 50MB, 기본 이모지 사용 가능
       </div>
-      <img src="https://i.imgur.com/HLICXGN.gif" alt="니트로 베이직 이미지" style="border-radius: 8px; margin-top: 10px;">
-      <button class="embed-button" style="margin-top: 15px;">구매하기</button>
+      <button class="embed-button">구매하기</button>
     </div>
 
     <div class="product-card">
+      <div class="embed-image">
+        <img src="https://i.imgur.com/HLICXGN.gif" alt="서버 부스트 이미지" />
+      </div>
       <div class="product-card-header">
         <div class="product-title">서버 부스트 30일 (2개)</div>
         <div class="product-tag">1+1</div>
@@ -1197,8 +1220,7 @@
       <div class="product-description">
         서버 부스트 혜택 2개 한 번에
       </div>
-      <img src="https://i.imgur.com/HLICXGN.gif" alt="서버 부스트 이미지" style="border-radius: 8px; margin-top: 10px;">
-      <button class="embed-button" style="margin-top: 15px;">구매하기</button>
+      <button class="embed-button">구매하기</button>
     </div>
   </div>
 </section>
