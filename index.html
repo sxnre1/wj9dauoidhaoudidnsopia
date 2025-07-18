@@ -1480,13 +1480,12 @@ async function submitCharge() {
 <script>
   const CLIENT_ID = '1395773069607567370'; // 디스코드 앱 Client ID
   const REDIRECT_URI = 'http://localhost:3000/auth/callback'; // 리다이렉트 URI (네가 서버 돌리는 주소)
-
-  // 로그인 버튼 클릭 시 OAuth2 인증 URL로 이동
+  
   document.getElementById('login-button').addEventListener('click', () => {
-    const discordOAuthUrl =
-      `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=identify`;
-    window.location.href = discordOAuthUrl;
-  });
+  const discordOAuthUrl =
+    `https://discord.com/api/oauth2/authorize?client_id=1395773069607567370&redirect_uri=${encodeURIComponent('http://localhost:8080/auth/callback')}&response_type=code&scope=identify`;
+  window.location.href = discordOAuthUrl;
+ });
 
   // URL에 code 파라미터가 있으면 로그인 완료로 간주
   async function handleOAuthCallback() {
