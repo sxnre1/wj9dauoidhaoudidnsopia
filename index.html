@@ -1479,10 +1479,11 @@ async function submitCharge() {
 
 <script>
 const CLIENT_ID = '1395773069607567370';
-const REDIRECT_URI = 'https://localhost:3000/auth/callback';
+const REDIRECT_URI = 'http://localhost:3000/auth/callback';  // https → http, 도메인 → localhost
 
 const discordOAuthUrl =
   `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=code&scope=identify`;
+
 window.location.href = discordOAuthUrl;
 
   // URL에 code 파라미터가 있으면 로그인 완료로 간주
