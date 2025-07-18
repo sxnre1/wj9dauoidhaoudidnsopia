@@ -69,20 +69,22 @@
 
     .nav-link {
       display: block;
-      font-size: 1.15rem;
+      font-size: 0.95rem;           /* ⬅️ 더 작은 글씨 */
       color: #bbb;
-      padding: 10px 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
+      padding: 6px 10px;            /* ⬅️ 높이 & 좌우 여백 줄이기 */
+      border-radius: 6px;
+      margin-bottom: 6px;           /* ⬅️ 항목 간 간격도 줄이기 */
       text-decoration: none;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
       user-select: text;
     }
+
     .nav-link:hover {
       background-color: #333;
       color: #fff;
     }
+
     .nav-link.active {
       background-color: #444;
       color: #fff;
@@ -582,6 +584,111 @@
   color: #b9bbbe;
 }
 
+.editable-box {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 10px;
+  min-height: 38px;
+  color: #eee;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+  display: flex;
+  align-items: center;
+}
+
+.placeholder {
+  color: #666;
+  pointer-events: none;
+  user-select: none;
+}
+
+.userinput {
+  flex: 1;
+  outline: none;
+  min-width: 1px;
+}
+
+.charge-button {
+  margin-top: 20px;
+  background-color: #5865f2;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.charge-button:hover {
+  background-color: #4752c4;
+}
+
+.webbuy-embed {
+  width: 100%;
+  padding: 20px;
+  background-color: #202225;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.embed-card {
+  background-color: #2f3136;
+  border-left: 4px solid #5865f2;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.4);
+  padding: 16px;
+  width: 250px;
+  color: #dcddde;
+}
+
+.embed-card h3 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.embed-card p {
+  margin: 0;
+  color: #b9bbbe;
+  line-height: 1.4;
+}
+
+.embed-card hr {
+  border: 0;
+  border-top: 1px solid #444;
+  margin: 10px 0;
+}
+
+.embed-button {
+  margin-top: 12px;
+  background-color: #5865f2;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.embed-button:hover {
+  background-color: #4752c4;
+}
+
+.embed-button {
+  display: none; /* 기본 숨김 */
+}
+
+section.active .embed-button {
+  display: block !important; /* 활성화된 section 내 버튼만 표시 */
+}
+
 @media screen and (max-width: 700px) {
   /* 사이드바 */
   .sidebar {
@@ -744,14 +851,20 @@
     </div>
 
     <a href="#" class="nav-link active" onclick="showSection('home', this)">🏡 Home / 홈</a>
+    <a href="#" class="nav-link" onclick="showSection('faq', this)">⁉️ Faq / 자주 묻는 질문</a>
     <a href="#" class="nav-link" onclick="showSection('products', this)">🛍️ Product / 제품</a>
     <a href="#" class="nav-link" onclick="showSection('contact', this)">✉️ Contact / 문의</a>
-    <a href="#" class="nav-link" onclick="showSection('faq', this)">⁉️ Faq / 자주 묻는 질문</a>
     <a href="#" class="nav-link" onclick="showSection('mod', this)">🛠️ Mod / 관리진 소개</a>
 
-    <hr style="border-color: #444; margin: 10px 0;" />
+    <div style="display: flex; align-items: center; text-align: center; margin: 10px 0;">
+      <div style="flex: 1; height: 1px; background-color: #444;"></div>
+      <span style="padding: 0 10px; color: #aaa; font-size: 0.9rem;">🔗 웹에서 구매 하기</span>
+      <div style="flex: 1; height: 1px; background-color: #444;"></div>
+    </div>
 
-    <a href="#" class="nav-link" onclick="showSection('webbuy', this)">🛒 웹판기로 구매하기</a>
+    <a href="#" class="nav-link" onclick="showSection('webcharge', this)">🛒 Charge to web / 웹판기 잔액충전</a>
+    <a href="#" class="nav-link" onclick="showSection('webbuy', this)">🛒 Buy to web / 웹에서 구매하기</a>
+
 
     <a href="https://discord.gg/nitro-sxnre" target="_blank" rel="noopener noreferrer" class="discord-join-btn">
       🚀 디스코드 입장하기
@@ -1040,10 +1153,92 @@
   </div>
 </section>
 
-  <section id="webbuy">
-  <h1>웹 구매</h1>
-  <p>여름 방학 내로 출시 예정 ⏰</p>
- </section>
+<section id="webbuy" class="active" style="padding: 20px; background-color: #202225; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
+  <div class="embed-card">
+    <div class="embed-image" style="background-color: #7289da;">N</div>
+    <hr class="embed-divider" />
+    <div class="embed-title">니트로 프라임 30일</div>
+    <div class="embed-desc">파일 업로드 500MB, 모든 서버 이모지 사용 가능</div>
+    <button class="embed-button">구매하기</button>
+  </div>
+
+  <div class="embed-card">
+    <div class="embed-image" style="background-color: #99aab5;">B</div>
+    <hr class="embed-divider" />
+    <div class="embed-title">니트로 베이직 30일</div>
+    <div class="embed-desc">파일 업로드 50MB, 기본 이모지 사용 가능</div>
+    <button class="embed-button">구매하기</button>
+  </div>
+
+  <div class="embed-card">
+    <div class="embed-image" style="background-color: #faa61a;">S</div>
+    <hr class="embed-divider" />
+    <div class="embed-title">서버 부스트 30일 (2개)</div>
+    <div class="embed-desc">서버 부스트 혜택 2개 한 번에</div>
+    <button class="embed-button">구매하기</button>
+  </div>
+</section>
+
+<section id="webcharge">
+  <h1>충전 신청</h1>
+  <p style="margin-bottom: 15px; color: #bbb;">
+    아래 내용을 입력해주시면, 충전 정보를 확인할 수 있습니다.
+  </p>
+
+  <div style="background-color: #1e1e1e; padding: 20px; border-radius: 12px;">
+
+    <p style="margin-bottom: 8px; color: #aaa;">디스코드 닉네임</p>
+    <div class="editable-box">
+      <span class="placeholder">예: 5x.n2e_</span>
+      <div id="inputName" class="userinput" contenteditable="true"
+        oninput="this.previousElementSibling.style.display = this.innerText.trim() ? 'none' : 'block'"></div>
+    </div>
+
+    <p style="margin: 15px 0 8px; color: #aaa;">충전 금액 (숫자만 작성해주세요)</p>
+    <div class="editable-box">
+      <span class="placeholder">예: 5000</span>
+      <div id="inputAmount" class="userinput" contenteditable="true"
+        oninput="this.previousElementSibling.style.display = this.innerText.trim() ? 'none' : 'block'"></div>
+    </div>
+
+    <p style="margin: 15px 0 8px; color: #aaa;">입금자명</p>
+    <div class="editable-box">
+      <span class="placeholder">예: 홍길동</span>
+      <div id="inputSender" class="userinput" contenteditable="true"
+        oninput="this.previousElementSibling.style.display = this.innerText.trim() ? 'none' : 'block'"></div>
+    </div>
+
+    <button onclick="submitCharge()" class="charge-button">계좌 확인하기</button>
+
+    <div id="chargeMessage" style="margin-top: 20px; display: none; background-color: #292929; padding: 15px; border-radius: 10px; color: #eee; line-height: 1.6;">
+      <strong>📌 계좌명:</strong> 카카오뱅크<br>
+      <strong>📌 계좌번호:</strong> 7777-03-4613608<br>
+      <strong>📌 예금주:</strong> ㅇㅅㅇ<br><br>
+      <strong style="color: #ffb84d;">⚠️ 충전 신청 후 관리자가 확인 시 잔액이 충전됩니다.</strong>
+    </div>
+  </div>
+</section>
+
+<script>
+function submitCharge() {
+  const name = document.getElementById("inputName").innerText.trim();
+  const amount = document.getElementById("inputAmount").innerText.trim();
+  const sender = document.getElementById("inputSender").innerText.trim();
+  const messageBox = document.getElementById("chargeMessage");
+
+  if (!name || !amount || !sender) {
+    alert("❗ 모든 항목을 입력해주세요.");
+    return;
+  }
+
+  messageBox.style.display = "block";
+
+  // 5분 후 메시지 자동 제거
+  setTimeout(() => {
+    messageBox.style.display = "none";
+  }, 5 * 60 * 1000);
+}
+</script>
 
 <section id="faq">
   <h1>자주 묻는 질문</h1>
