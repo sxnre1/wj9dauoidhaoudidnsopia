@@ -1040,114 +1040,107 @@
   </div>
 </section>
 
-<!-- ...MOD 섹션 아래에 추가... -->
-<section id="webbuy">
-  <h1>웹에서 상품 구매하기</h1>
-  <div class="product-grid">
+<section id="webbuy" style="padding: 30px; background-color:#18191c; color:#ddd; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <h1 style="font-size: 2.4rem; font-weight: 800; margin-bottom: 30px; color:#5865F2;">웹에서 상품 구매하기</h1>
+  
+  <div class="product-grid" style="display:flex; gap: 20px; flex-wrap: wrap; justify-content:center;">
 
-    <div class="product-card">
-      <div class="product-card-header">
-        <div class="product-title">니트로 프라임 30일</div>
-        <div class="product-tag">선물링크</div>
+    <!-- 상품 카드 예시 -->
+    <div class="product-card" style="background:#2f3136; border-radius:12px; padding: 20px; width: 280px; box-sizing:border-box; color:#ddd; box-shadow: 0 0 10px rgba(88,101,242,0.7);">
+      <div class="product-card-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <div class="product-title" style="font-weight: 700; font-size: 1.2rem;">니트로 프라임 30일</div>
+        <div class="product-tag" style="background:#5865F2; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem;">선물링크</div>
       </div>
-      <div class="product-description">
+      <div class="product-description" style="font-size: 0.9rem; margin-bottom: 16px;">
         <p>파일 업로드 최대 500MB, 모든 서버 이모지 사용, HD 화면 공유 등 다양한 혜택!</p>
       </div>
-      <div class="product-price">₩6,500</div>
-      <button class="btn-primary" onclick="openPurchaseForm('니트로 프라임 30일', 6500)">충전 신청</button>
+      <div class="product-price" style="font-weight: 800; font-size: 1.3rem; margin-bottom: 16px;">₩6,500</div>
+      <button class="btn-primary" onclick="openPurchaseModal('니트로 프라임 30일', 6500)" style="background:#5865F2; border:none; border-radius: 8px; padding: 12px 18px; color:#fff; font-weight: 700; cursor:pointer; width:100%; transition: background 0.3s ease;">충전 신청</button>
     </div>
 
-    <div class="product-card">
-      <div class="product-card-header">
-        <div class="product-title">니트로 베이직 30일</div>
-        <div class="product-tag">선물링크</div>
-      </div>
-      <div class="product-description">
-        <p>파일 업로드 최대 50MB, 모든 서버 이모지 사용 등 기본 혜택!</p>
-      </div>
-      <div class="product-price">₩3,000</div>
-      <button class="btn-primary" onclick="openPurchaseForm('니트로 베이직 30일', 3000)">충전 신청</button>
-    </div>
+    <!-- 다른 상품들도 동일한 방식으로 추가 가능 -->
 
-    <div class="product-card">
-      <div class="product-card-header">
-        <div class="product-title">서버 부스트 30일 (2개)</div>
-        <div class="product-tag">1+1</div>
-      </div>
-      <div class="product-description">
-        <p>서버 부스트 혜택을 2개 한 번에!</p>
-      </div>
-      <div class="product-price">₩1,000</div>
-      <button class="btn-primary" onclick="openPurchaseForm('서버 부스트 30일 (2개)', 1000)">충전 신청</button>
-    </div>
+  </div>
 
+  <!-- 충전 신청 모달 -->
+  <div id="purchaseModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); justify-content:center; align-items:center; z-index:10000;">
+    <div style="background:#2f3136; border-radius: 12px; padding: 24px; max-width: 400px; width: 90%; box-sizing:border-box; color:#eee; box-shadow: 0 5px 15px rgba(0,0,0,0.9);">
+      <h2 style="margin-top:0; font-weight: 800; font-size: 1.8rem; color:#5865F2;">충전 신청</h2>
+      <form id="purchaseForm" onsubmit="return submitPurchase(event)">
+        <input type="hidden" id="productName" name="productName" />
+        <input type="hidden" id="productPrice" name="productPrice" />
+        
+        <label for="nickname" style="display:block; margin-top: 15px; font-weight:600;">디스코드 닉네임</label>
+        <input id="nickname" name="nickname" type="text" required placeholder="예: User#1234" style="width:100%; padding:10px; margin-top:6px; border-radius: 8px; border:none; background:#202225; color:#eee; font-size: 1rem;" />
+        
+        <small style="color:#888; font-size:0.8rem;">※ 실제 개인정보 수집하지 않습니다. 편하게 입력하세요!</small>
+        
+        <div style="margin-top: 24px; display:flex; justify-content: space-between; align-items:center;">
+          <button type="submit" style="background:#5865F2; border:none; border-radius: 8px; padding: 12px 18px; color:#fff; font-weight: 700; cursor:pointer; width:100%; transition: background 0.3s ease;">신청하기</button>
+        </div>
+      </form>
+    </div>
   </div>
 </section>
 
-<!-- 구매 신청 모달 (간단하게 구현) -->
-<div id="purchaseModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
-  <div style="background:#222; padding:20px; border-radius:8px; max-width:400px; width:90%; color:#eee;">
-    <h2>충전 신청</h2>
-    <form id="purchaseForm">
-      <input type="hidden" name="product" id="productInput" />
-      <label>
-        구매할 상품명: <span id="productName" style="font-weight:bold;"></span>
-      </label><br /><br />
-      <label>
-        디스코드 닉네임 (필수)<br />
-        <input type="text" name="discordName" required style="width:100%; padding:8px; margin-top:4px;" />
-      </label><br /><br />
-      <label>
-        결제 수단<br />
-        <input type="text" name="paymentMethod" placeholder="예: 계좌이체" style="width:100%; padding:8px; margin-top:4px;" />
-      </label><br /><br />
-      <button type="submit" class="btn-primary" style="width:100%;">신청하기</button>
-      <button type="button" onclick="closePurchaseForm()" style="margin-top:8px; width:100%;">취소</button>
-    </form>
-  </div>
-</div>
-
 <script>
-  // 모달 열기
-  function openPurchaseForm(product, price) {
-    document.getElementById('productName').innerText = product + " (₩" + price.toLocaleString() + ")";
-    document.getElementById('productInput').value = product;
-    document.getElementById('purchaseModal').style.display = "flex";
+  function openPurchaseModal(product, price) {
+    document.getElementById('productName').value = product;
+    document.getElementById('productPrice').value = price;
+    document.getElementById('nickname').value = '';
+    document.getElementById('purchaseModal').style.display = 'flex';
   }
 
-  // 모달 닫기
-  function closePurchaseForm() {
-    document.getElementById('purchaseModal').style.display = "none";
+  function closePurchaseModal() {
+    document.getElementById('purchaseModal').style.display = 'none';
   }
 
-  // 폼 제출 이벤트
-  document.getElementById("purchaseForm").addEventListener("submit", async function(e) {
+  async function submitPurchase(e) {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const data = {
-      product: formData.get("product"),
-      discordName: formData.get("discordName"),
-      paymentMethod: formData.get("paymentMethod")
+    
+    const product = document.getElementById('productName').value;
+    const price = document.getElementById('productPrice').value;
+    const nickname = document.getElementById('nickname').value.trim();
+
+    if (!nickname) {
+      alert('닉네임을 꼭 입력해주세요!');
+      return false;
+    }
+
+    const webhookUrl = 'https://discord.com/api/webhooks/여기에_웹훅_ID_및_토큰';
+
+    const payload = {
+      embeds: [{
+        title: '💳 신규 충전 신청',
+        color: 7506394,
+        fields: [
+          { name: '상품명', value: product, inline: true },
+          { name: '금액', value: `₩${price}`, inline: true },
+          { name: '디스코드 닉네임', value: nickname, inline: false },
+          { name: '신청 시간', value: new Date().toLocaleString(), inline: false }
+        ],
+        footer: { text: '자동 알림 메시지' }
+      }]
     };
 
     try {
-      const res = await fetch("/api/purchase-request", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+      const res = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-
       if (res.ok) {
-        alert("충전 신청이 접수되었습니다. 관리자가 확인 후 안내드릴게요!");
-        e.target.reset();
-        closePurchaseForm();
+        alert('충전 신청이 완료되었습니다!\n관리자가 확인 후 연락드립니다.');
+        closePurchaseModal();
       } else {
-        alert("신청 중 오류가 발생했습니다. 다시 시도해주세요.");
+        alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
       }
     } catch (err) {
-      alert("서버 연결 실패. 잠시 후 다시 시도해주세요.");
+      alert('네트워크 오류가 발생했습니다. 인터넷 연결을 확인해주세요.');
+      console.error(err);
     }
-  });
+    return false;
+  }
 </script>
 
 <section id="faq">
