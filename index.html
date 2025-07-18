@@ -1257,7 +1257,7 @@
 </section>
 
 <script>
-function submitCharge() {
+async function submitCharge() {
   const name = document.getElementById("inputName").innerText.trim();
   const amount = document.getElementById("inputAmount").innerText.trim();
   const sender = document.getElementById("inputSender").innerText.trim();
@@ -1268,12 +1268,31 @@ function submitCharge() {
     return;
   }
 
-  messageBox.style.display = "block";
+  try {
+    const res = await fetch('https://nitrosxnreshop.xyz/charge', {  // 백엔드 서버 charge API 주소
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ userName: name, amount, sender })  // 백엔드가 받는 키 이름에 맞춤
+    });
 
-  // 5분 후 메시지 자동 제거
-  setTimeout(() => {
-    messageBox.style.display = "none";
-  }, 5 * 60 * 1000);
+    if (!res.ok) throw new Error('서버 오류');
+
+    messageBox.style.display = 'block';
+    messageBox.innerHTML = '충전 요청이 정상적으로 접수되었습니다. 관리자 확인 후 처리됩니다.';
+
+    setTimeout(() => {
+      messageBox.style.display = 'none';
+      messageBox.innerHTML = `
+        <strong>📌 계좌명:</strong> 카카오뱅크<br>
+        <strong>📌 계좌번호:</strong> 7777-03-4613608<br>
+        <strong>📌 예금주:</strong> ㅇㅅㅇ<br><br>
+        <strong style="color: #ffb84d;">⚠️ 충전 신청 후 관리자가 확인 시 잔액이 충전됩니다.</strong>
+      `;
+    }, 5 * 60 * 1000);
+
+  } catch (err) {
+    alert('⚠️ 요청 전송 실패: ' + err.message);
+  }
 }
 </script>
 
