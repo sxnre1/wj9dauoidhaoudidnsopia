@@ -711,38 +711,51 @@
 }
 
 #user-info-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 999;
+  /* fixed 제거하고 사이드바 내부 배치에 맞게 변경 */
+  position: relative;
+  margin-top: 20px;
+  z-index: 10;
+  color: #dcddde;
 }
 
 #login-button {
   background-color: #5865f2;
   color: white;
   border: none;
-  padding: 8px 14px;
+  padding: 10px 14px;
   border-radius: 6px;
   cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#login-button:hover {
+  background-color: #4752c4;
 }
 
 #profile-section {
   position: relative;
   display: inline-block;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
 }
 
 #profile-avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  cursor: pointer;
   border: 2px solid #5865f2;
+  margin: 0 auto;
+  display: block;
 }
 
 #profile-dropdown {
   position: absolute;
-  top: 50px;
-  right: 0;
+  top: 60px;
+  right: 50%;
+  transform: translateX(50%);
   background-color: #2f3136;
   padding: 12px;
   border-radius: 8px;
@@ -750,17 +763,22 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   color: #dcddde;
   display: none;
+  text-align: left;
+  z-index: 1000;
 }
 
 #profile-dropdown ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 100px;
+  overflow-y: auto;
 }
 
 #profile-dropdown li {
   margin-bottom: 6px;
 }
+
 
 @media screen and (max-width: 700px) {
   /* 사이드바 */
@@ -914,35 +932,59 @@
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <div class="sidebar-image">
-      <img src="https://i.imgur.com/L2jB3V5.gif" alt="샵 이미지" />
-    </div>
-    <div class="sidebar-header">
-      <h2>최저가 센러샵</h2>
-      <p>1300+ 의 유저가 신뢰하는 디스코드 서비스</p>
-    </div>
-
-    <a href="#" class="nav-link active" onclick="showSection('home', this)">🏡 Home / 홈</a>
-    <a href="#" class="nav-link" onclick="showSection('faq', this)">⁉️ Faq / 자주 묻는 질문</a>
-    <a href="#" class="nav-link" onclick="showSection('products', this)">🛍️ Product / 제품</a>
-    <a href="#" class="nav-link" onclick="showSection('contact', this)">✉️ Contact / 문의</a>
-    <a href="#" class="nav-link" onclick="showSection('mod', this)">🛠️ Mod / 관리진 소개</a>
-
-    <div style="display: flex; align-items: center; text-align: center; margin: 10px 0;">
-      <div style="flex: 1; height: 1px; background-color: #444;"></div>
-      <span style="padding: 0 10px; color: #aaa; font-size: 0.9rem;">🔗 웹에서 구매 하기</span>
-      <div style="flex: 1; height: 1px; background-color: #444;"></div>
-    </div>
-
-    <a href="#" class="nav-link" onclick="showSection('webcharge', this)">🛒 Charge to web / 웹판기 잔액충전</a>
-    <a href="#" class="nav-link" onclick="showSection('webbuy', this)">🛒 Buy to web / 웹에서 구매하기</a>
-
-
-    <a href="https://discord.gg/nitro-sxnre" target="_blank" rel="noopener noreferrer" class="discord-join-btn">
-      🚀 디스코드 입장하기
-    </a>
+<div class="sidebar">
+  <div class="sidebar-image">
+    <img src="https://i.imgur.com/L2jB3V5.gif" alt="샵 이미지" />
   </div>
+  <div class="sidebar-header">
+    <h2>최저가 센러샵</h2>
+    <p>1300+ 의 유저가 신뢰하는 디스코드 서비스</p>
+  </div>
+
+  <a href="#" class="nav-link active" onclick="showSection('home', this)">🏡 Home / 홈</a>
+  <a href="#" class="nav-link" onclick="showSection('faq', this)">⁉️ Faq / 자주 묻는 질문</a>
+  <a href="#" class="nav-link" onclick="showSection('products', this)">🛍️ Product / 제품</a>
+  <a href="#" class="nav-link" onclick="showSection('contact', this)">✉️ Contact / 문의</a>
+  <a href="#" class="nav-link" onclick="showSection('mod', this)">🛠️ Mod / 관리진 소개</a>
+
+  <div style="display: flex; align-items: center; text-align: center; margin: 10px 0;">
+    <div style="flex: 1; height: 1px; background-color: #444;"></div>
+    <span style="padding: 0 10px; color: #aaa; font-size: 0.9rem;">🔗 웹에서 구매 하기</span>
+    <div style="flex: 1; height: 1px; background-color: #444;"></div>
+  </div>
+
+  <a href="#" class="nav-link" onclick="showSection('webcharge', this)">🛒 Charge to web / 웹판기 잔액충전</a>
+  <a href="#" class="nav-link" onclick="showSection('webbuy', this)">🛒 Buy to web / 웹에서 구매하기</a>
+
+  <!-- 프로필 / 로그인 영역 추가 -->
+  <div id="user-info-container" style="margin: 20px 0; border-top: 1px solid #444; padding-top: 15px;">
+
+    <!-- 로그인 버튼 -->
+    <div id="login-section" style="text-align:center;">
+      <button id="login-button" style="width: 100%; padding: 10px; background-color: #5865F2; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+        디스코드 로그인
+      </button>
+    </div>
+
+    <!-- 로그인 후 프로필 영역 (초기에는 숨김) -->
+    <div id="profile-section" style="display: none; text-align: center; position: relative; margin-top: 10px; cursor: pointer;">
+      <img src="https://cdn.discordapp.com/embed/avatars/0.png" id="profile-avatar" alt="프로필" style="width: 50px; height: 50px; border-radius: 50%; margin: 0 auto;"/>
+      <div id="profile-dropdown" style="display: none; background-color: #2f3136; color: #ddd; padding: 15px; border-radius: 8px; margin-top: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); text-align: left;">
+        <div><strong id="profile-name">닉네임</strong></div>
+        <div style="margin: 8px 0;">💰 잔액: <span id="user-balance">0</span>원</div>
+        <hr style="border-color: #444;" />
+        <div>🛒 최근 구매:</div>
+        <ul id="recent-purchases" style="max-height: 100px; overflow-y: auto; padding-left: 20px; margin-top: 6px;">
+          <li>없음</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://discord.gg/nitro-sxnre" target="_blank" rel="noopener noreferrer" class="discord-join-btn" style="display: block; margin-top: auto; padding: 12px; background: #5865F2; color: white; border-radius: 8px; text-align: center; font-weight: 700; text-decoration: none;">
+    🚀 디스코드 입장하기
+  </a>
+</div>
 
   <div class="main-content">
     <section id="home" class="active">
@@ -1437,7 +1479,7 @@ async function submitCharge() {
 </div>
 
 <script>
-  const CLIENT_ID = 'YOUR_DISCORD_CLIENT_ID'; // 디스코드 앱 Client ID
+  const CLIENT_ID = '1395773069607567370'; // 디스코드 앱 Client ID
   const REDIRECT_URI = 'http://localhost:5500'; // 리다이렉트 URI (네가 서버 돌리는 주소)
 
   // 로그인 버튼 클릭 시 OAuth2 인증 URL로 이동
