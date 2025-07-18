@@ -625,69 +625,66 @@
   background-color: #4752c4;
 }
 
-.webbuy-embed {
-  width: 100%;
-  padding: 20px;
-  background-color: #202225;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center;
-}
+    #webbuy {
+      background-color: #202225;
+      display: none; /* 기본 숨김 */
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      padding: 20px;
+    }
 
-.embed-card {
-  background-color: #2f3136;
-  border-left: 4px solid #5865f2;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.4);
-  padding: 16px;
-  width: 250px;
-  color: #dcddde;
-}
+    #webbuy.active {
+      display: flex;
+    }
 
-.embed-card h3 {
-  margin: 0 0 8px 0;
-  font-weight: 600;
-  color: #ffffff;
-  font-size: 1.1rem;
-}
+    .embed-card {
+      background-color: #2f3136;
+      border-left: 4px solid #5865f2;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgb(0 0 0 / 0.4);
+      padding: 16px;
+      width: 250px;
+      color: #dcddde;
+    }
 
-.embed-card p {
-  margin: 0;
-  color: #b9bbbe;
-  line-height: 1.4;
-}
+    .embed-image {
+      font-weight: bold;
+      font-size: 20px;
+      background: gray;
+      padding: 10px;
+      color: white;
+      border-radius: 6px;
+      text-align: center;
+    }
 
-.embed-card hr {
-  border: 0;
-  border-top: 1px solid #444;
-  margin: 10px 0;
-}
+    .embed-title {
+      margin-top: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
 
-.embed-button {
-  margin-top: 12px;
-  background-color: #5865f2;
-  border: none;
-  border-radius: 6px;
-  padding: 10px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
+    .embed-desc {
+      margin-top: 6px;
+      color: #b9bbbe;
+    }
 
-.embed-button:hover {
-  background-color: #4752c4;
-}
+    .embed-button {
+      margin-top: 12px;
+      background-color: #5865f2;
+      border: none;
+      border-radius: 6px;
+      padding: 10px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
 
-.embed-button {
-  display: none; /* 기본 숨김 */
-}
-
-section.active .embed-button {
-  display: block !important; /* 활성화된 section 내 버튼만 표시 */
-}
+    .embed-button:hover {
+      background-color: #4752c4;
+    }
 
 @media screen and (max-width: 700px) {
   /* 사이드바 */
@@ -1153,31 +1150,59 @@ section.active .embed-button {
   </div>
 </section>
 
-<section id="webbuy" class="active" style="padding: 20px; background-color: #202225; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;">
-  <div class="embed-card">
-    <div class="embed-image" style="background-color: #7289da;">N</div>
-    <hr class="embed-divider" />
-    <div class="embed-title">니트로 프라임 30일</div>
-    <div class="embed-desc">파일 업로드 500MB, 모든 서버 이모지 사용 가능</div>
-    <button class="embed-button">구매하기</button>
-  </div>
+  <section id="webbuy">
+    <div class="embed-card">
+      <div class="embed-image" style="background-color: #7289da;">N</div>
+      <hr />
+      <div class="embed-title">니트로 프라임 30일</div>
+      <div class="embed-desc">파일 업로드 500MB, 모든 서버 이모지 사용 가능</div>
+      <button class="embed-button">구매하기</button>
+    </div>
+    <div class="embed-card">
+      <div class="embed-image" style="background-color: #99aab5;">B</div>
+      <hr />
+      <div class="embed-title">니트로 베이직 30일</div>
+      <div class="embed-desc">파일 업로드 50MB, 기본 이모지 사용 가능</div>
+      <button class="embed-button">구매하기</button>
+    </div>
+    <div class="embed-card">
+      <div class="embed-image" style="background-color: #faa61a;">S</div>
+      <hr />
+      <div class="embed-title">서버 부스트 30일 (2개)</div>
+      <div class="embed-desc">서버 부스트 혜택 2개 한 번에</div>
+      <button class="embed-button">구매하기</button>
+    </div>
+  </section>
 
-  <div class="embed-card">
-    <div class="embed-image" style="background-color: #99aab5;">B</div>
-    <hr class="embed-divider" />
-    <div class="embed-title">니트로 베이직 30일</div>
-    <div class="embed-desc">파일 업로드 50MB, 기본 이모지 사용 가능</div>
-    <button class="embed-button">구매하기</button>
-  </div>
+  <script>
+    function showSection(id, el) {
+      document.querySelectorAll("section").forEach(sec => {
+        sec.classList.remove("active");
+      });
 
-  <div class="embed-card">
-    <div class="embed-image" style="background-color: #faa61a;">S</div>
-    <hr class="embed-divider" />
-    <div class="embed-title">서버 부스트 30일 (2개)</div>
-    <div class="embed-desc">서버 부스트 혜택 2개 한 번에</div>
-    <button class="embed-button">구매하기</button>
-  </div>
-</section>
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add("active");
+      }
+
+      document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
+      if (el) el.classList.add("active");
+
+      // 주소창 hash 변경 (선택사항)
+      history.pushState(null, '', `#${id}`);
+    }
+
+    // 초기 로딩 시 hash 감지
+    window.addEventListener('load', () => {
+      const hash = location.hash.replace('#', '');
+      const section = document.getElementById(hash);
+      if (section) {
+        showSection(hash, document.querySelector(`.nav-link[onclick*="${hash}"]`));
+      } else {
+        showSection('home', document.querySelector('.nav-link[onclick*="home"]'));
+      }
+    });
+  </script>
 
 <section id="webcharge">
   <h1>충전 신청</h1>
