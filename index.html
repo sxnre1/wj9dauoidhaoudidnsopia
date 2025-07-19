@@ -710,6 +710,35 @@
   background-color: #4752c4;
 }
 
+#profile-popup {
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  width: 320px;
+  max-height: 400px;
+  overflow-y: auto;
+  background-color: #2c2f4a;
+  color: white;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  display: none;
+}
+#profile-popup h2 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+#profile-popup p {
+  margin-bottom: 16px;
+}
+#profile-popup ul {
+  margin-left: 16px;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
 @media screen and (max-width: 700px) {
   /* 사이드바 */
   .sidebar {
@@ -885,6 +914,10 @@
 
   <a href="#" class="nav-link" onclick="showSection('webcharge', this)">🛒 Charge to web / 웹판기 잔액충전</a>
   <a href="#" class="nav-link" onclick="showSection('webbuy', this)">🛒 Buy to web / 웹에서 구매하기</a>
+
+  <a href="#" id="profile-toggle-btn" onclick="toggleProfile()" 
+    class="nav-link" style="margin-top: 10px;">로그인 하기
+  </a>
 
   <a href="https://discord.gg/nitro-sxnre" target="_blank" rel="noopener noreferrer" class="discord-join-btn" style="display: block; margin-top: auto; padding: 12px; background: #5865F2; color: white; border-radius: 8px; text-align: center; font-weight: 700; text-decoration: none;">
     🚀 디스코드 입장하기
@@ -1361,6 +1394,106 @@ async function submitCharge() {
     chargeBtn.disabled = false;
   }
 }
+</script>
+
+<div id="profile-popup"
+     class="fixed top-24 right-10 w-[320px] max-h-[400px] overflow-y-auto rounded-2xl shadow-lg bg-[#2c2f4a] text-white p-4 z-50 hidden">
+  <h2 class="text-lg font-semibold mb-2">현재 로그인한 사용자의 정보입니다.</h2>
+  <p class="mb-4">
+    <span id="popup-username">사용자</span> | <span id="popup-balance">5000</span>원
+  </p>
+
+  <!-- 드롭다운: 최근 충전 -->
+  <button class="w-full text-left font-medium mb-2" onclick="toggleSection('charge')">
+    ▸ 최근 충전한 내역
+  </button>
+  <ul id="charge-list" class="ml-4 mb-4 hidden text-sm text-gray-200"></ul>
+
+  <!-- 드롭다운: 최근 구매 -->
+  <button class="w-full text-left font-medium mb-2" onclick="toggleSection('purchase')">
+    ▸ 최근 구매한 내역
+  </button>
+  <ul id="purchase-list" class="ml-4 text-sm text-gray-200 hidden"></ul>
+</div>
+
+<script>
+  // 예시 데이터
+  const isLoggedIn = true; // 로그인 여부
+  const user = {
+    username: "ws",
+    balance: 5000,
+    charges: [
+      { date: "2025-07-19", amount: 5000 },
+      { date: "2025-07-18", amount: 3000 },
+      { date: "2025-07-17", amount: 2000 },
+    ],
+    purchases: [
+      { date: "2025-07-18", item: "상품 A" },
+      { date: "2025-07-17", item: "상품 B" },
+    ]
+  };
+
+  // 로그인 상태에 따라 버튼 변경
+  window.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById("profile-toggle-btn");
+    if (isLoggedIn) {
+      toggleBtn.innerText = "👤 프로필 확인하기";
+    }
+  });
+
+  // 프로필 팝업 토글
+  function toggleProfile() {
+    if (!isLoggedIn) {
+      alert("로그인 기능은 곧 추가됩니다!");
+      return;
+    }
+
+    const popup = document.getElementById("profile-popup");
+    const isVisible = !popup.classList.contains("hidden");
+
+    if (isVisible) {
+      popup.classList.add("hidden");
+    } else {
+      document.getElementById("popup-username").innerText = user.username;
+      document.getElementById("popup-balance").innerText = user.balance.toLocaleString();
+
+      // 최근 5일 필터링
+      const filter5Days = (logs) => {
+        const now = new Date();
+        return logs.filter(log => {
+          const logDate = new Date(log.date);
+          return (now - logDate) / (1000 * 60 * 60 * 24) <= 5;
+        });
+      };
+
+      const chargeList = document.getElementById("charge-list");
+      const purchaseList = document.getElementById("purchase-list");
+
+      chargeList.innerHTML = filter5Days(user.charges)
+        .map(log => `<li>${log.date} | +${log.amount.toLocaleString()}원</li>`).join("");
+
+      purchaseList.innerHTML = filter5Days(user.purchases)
+        .map(log => `<li>${log.date} | ${log.item}</li>`).join("");
+
+      popup.classList.remove("hidden");
+    }
+  }
+
+  // 드롭다운 펼침
+  function toggleSection(type) {
+    const el = document.getElementById(`${type}-list`);
+    el.classList.toggle("hidden");
+  }
+
+  // 클릭 외부 시 닫기
+  document.addEventListener("click", (e) => {
+    const popup = document.getElementById("profile-popup");
+    const toggleBtn = document.getElementById("profile-toggle-btn");
+
+    if (!popup.contains(e.target) && !toggleBtn.contains(e.target)) {
+      popup.classList.add("hidden");
+    }
+  });
 </script>
 
 <section id="faq">
