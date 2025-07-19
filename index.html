@@ -915,9 +915,14 @@
   <a href="#" class="nav-link" onclick="showSection('webcharge', this)">🛒 Charge to web / 웹판기 잔액충전</a>
   <a href="#" class="nav-link" onclick="showSection('webbuy', this)">🛒 Buy to web / 웹에서 구매하기</a>
 
-  <a href="#" id="profile-toggle-btn" onclick="toggleProfile()" 
-    class="nav-link" style="margin-top: 10px;">로그인 하기
-  </a>
+<a
+  href="#"
+  id="profile-toggle-btn"
+  class="nav-link"
+  style="margin-top: 10px; background-color: #5865F2; color: white; border-radius: 6px; text-align: center;"
+>
+  로그인 하기
+</a>
 
   <a href="https://discord.gg/nitro-sxnre" target="_blank" rel="noopener noreferrer" class="discord-join-btn" style="display: block; margin-top: auto; padding: 12px; background: #5865F2; color: white; border-radius: 8px; text-align: center; font-weight: 700; text-decoration: none;">
     🚀 디스코드 입장하기
@@ -1396,102 +1401,96 @@ async function submitCharge() {
 }
 </script>
 
-<div id="profile-popup"
-     class="fixed top-24 right-10 w-[320px] max-h-[400px] overflow-y-auto rounded-2xl shadow-lg bg-[#2c2f4a] text-white p-4 z-50 hidden">
+<div id="profile-popup" class="hidden fixed top-24 right-8 w-[320px] bg-[#2c2f4a] text-white p-4 rounded-xl shadow-lg z-50">
   <h2 class="text-lg font-semibold mb-2">현재 로그인한 사용자의 정보입니다.</h2>
-  <p class="mb-4">
-    <span id="popup-username">사용자</span> | <span id="popup-balance">5000</span>원
-  </p>
+  <p class="mb-4"><strong id="profile-username">닉네임</strong> | <span id="profile-balance">1000</span>원</p>
 
-  <!-- 드롭다운: 최근 충전 -->
-  <button class="w-full text-left font-medium mb-2" onclick="toggleSection('charge')">
-    ▸ 최근 충전한 내역
-  </button>
-  <ul id="charge-list" class="ml-4 mb-4 hidden text-sm text-gray-200"></ul>
+  <details class="mb-2">
+    <summary class="cursor-pointer text-sm font-medium text-gray-300">최근 충전한 내역</summary>
+    <ul id="charge-history" class="ml-4 mt-2 text-sm text-gray-400">
+      <!-- 최근 충전 내역 삽입됨 -->
+    </ul>
+  </details>
 
-  <!-- 드롭다운: 최근 구매 -->
-  <button class="w-full text-left font-medium mb-2" onclick="toggleSection('purchase')">
-    ▸ 최근 구매한 내역
-  </button>
-  <ul id="purchase-list" class="ml-4 text-sm text-gray-200 hidden"></ul>
+  <details>
+    <summary class="cursor-pointer text-sm font-medium text-gray-300">최근 구매한 내역</summary>
+    <ul id="purchase-history" class="ml-4 mt-2 text-sm text-gray-400">
+      <!-- 최근 구매 내역 삽입됨 -->
+    </ul>
+  </details>
 </div>
 
 <script>
-  // 예시 데이터
-  const isLoggedIn = true; // 로그인 여부
-  const user = {
-    username: "ws",
-    balance: 5000,
+  const profileBtn = document.getElementById("profile-toggle-btn");
+  const profilePopup = document.getElementById("profile-popup");
+
+  // 예시 사용자 데이터 (나중엔 실제 DB 연동)
+  const mockUser = {
+    username: "센러고객",
+    balance: 2300,
     charges: [
-      { date: "2025-07-19", amount: 5000 },
-      { date: "2025-07-18", amount: 3000 },
-      { date: "2025-07-17", amount: 2000 },
+      "7/19 - 1000원",
+      "7/18 - 800원",
+      "7/17 - 500원",
+      "7/16 - 100원",
+      "7/15 - 200원",
+      "7/14 - 300원", // → 초과분
     ],
     purchases: [
-      { date: "2025-07-18", item: "상품 A" },
-      { date: "2025-07-17", item: "상품 B" },
+      "7/18 - 로블럭스 100",
+      "7/17 - 닉변권",
+      "7/16 - Nitro",
+      "7/15 - 상점 포인트",
+      "7/14 - VIP 아이템",
+      "7/13 - 이모지 세트" // → 초과분
     ]
   };
 
-  // 로그인 상태에 따라 버튼 변경
-  window.addEventListener('DOMContentLoaded', () => {
-    const toggleBtn = document.getElementById("profile-toggle-btn");
-    if (isLoggedIn) {
-      toggleBtn.innerText = "👤 프로필 확인하기";
-    }
-  });
+  // 로그인 여부 체크 (임시)
+  let isLoggedIn = true;
 
-  // 프로필 팝업 토글
-  function toggleProfile() {
+  // 로그인/프로필 버튼 세팅
+  if (isLoggedIn) {
+    profileBtn.textContent = "프로필 확인하기";
+  }
+
+  profileBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
     if (!isLoggedIn) {
-      alert("로그인 기능은 곧 추가됩니다!");
+      alert("로그인 페이지로 연결됩니다.");
       return;
     }
 
-    const popup = document.getElementById("profile-popup");
-    const isVisible = !popup.classList.contains("hidden");
+    // 프로필 세팅
+    document.getElementById("profile-username").textContent = mockUser.username;
+    document.getElementById("profile-balance").textContent = mockUser.balance;
 
-    if (isVisible) {
-      popup.classList.add("hidden");
-    } else {
-      document.getElementById("popup-username").innerText = user.username;
-      document.getElementById("popup-balance").innerText = user.balance.toLocaleString();
+    const chargeList = document.getElementById("charge-history");
+    const purchaseList = document.getElementById("purchase-history");
 
-      // 최근 5일 필터링
-      const filter5Days = (logs) => {
-        const now = new Date();
-        return logs.filter(log => {
-          const logDate = new Date(log.date);
-          return (now - logDate) / (1000 * 60 * 60 * 24) <= 5;
-        });
-      };
+    chargeList.innerHTML = "";
+    purchaseList.innerHTML = "";
 
-      const chargeList = document.getElementById("charge-list");
-      const purchaseList = document.getElementById("purchase-list");
+    mockUser.charges.slice(0, 5).forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      chargeList.appendChild(li);
+    });
 
-      chargeList.innerHTML = filter5Days(user.charges)
-        .map(log => `<li>${log.date} | +${log.amount.toLocaleString()}원</li>`).join("");
+    mockUser.purchases.slice(0, 5).forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      purchaseList.appendChild(li);
+    });
 
-      purchaseList.innerHTML = filter5Days(user.purchases)
-        .map(log => `<li>${log.date} | ${log.item}</li>`).join("");
+    profilePopup.classList.toggle("hidden");
+  });
 
-      popup.classList.remove("hidden");
-    }
-  }
-
-  // 드롭다운 펼침
-  function toggleSection(type) {
-    const el = document.getElementById(`${type}-list`);
-    el.classList.toggle("hidden");
-  }
-
-  // 클릭 외부 시 닫기
+  // 프로필 바깥 누르면 닫기
   document.addEventListener("click", (e) => {
-    const popup = document.getElementById("profile-popup");
-    const toggleBtn = document.getElementById("profile-toggle-btn");
-
-    if (!popup.contains(e.target) && !toggleBtn.contains(e.target)) {
-      popup.classList.add("hidden");
+    if (!profilePopup.contains(e.target) && e.target !== profileBtn) {
+      profilePopup.classList.add("hidden");
     }
   });
 </script>
