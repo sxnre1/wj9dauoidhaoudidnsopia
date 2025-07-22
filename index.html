@@ -1104,6 +1104,18 @@
       </div>
     </div>
 
+    <div class="mod-divider">티켓, 서버 총관리자</div>
+
+    <div class="mod-card">
+      <img class="mod-thumbnail" src="https://i.imgur.com/W49ZFne.gif">
+      <div class="mod-info">
+        <h2 class="mod-name">MINI</h2>
+        <p class="mod-desc">저는 최저가 센러샵의 서버관리, 봇 테스트, 티켓관리를 담당하고있는 미니라고 해요 ! 잘부탁드려요 !</p>
+        <p class="mod-desc">고객님을 위해 열심히 일하겠습니다 !</p>
+        <p class="mod-note">항상 열심히 하는 <strong>미니</strong>가 되겠습니다!</p>
+      </div>
+    </div>
+
     <!-- 부관리자 구분선 -->
     <div class="mod-divider">부관리자</div>
 
@@ -1157,16 +1169,6 @@
         <p class="mod-desc">저는 최저가 센러샵의 서버관리, 티켓관리를 담당하고있는 반타라고 해요 ! 잘부탁드려요 !</p>
         <p class="mod-desc">고객님을 위해 열심히 일하겠습니다 !</p>
         <p class="mod-note">항상 열심히 하는 <strong>반타</strong>가 되겠습니다!</p>
-      </div>
-    </div>
-
-    <div class="mod-card">
-      <img class="mod-thumbnail" src="https://i.imgur.com/W49ZFne.gif">
-      <div class="mod-info">
-        <h2 class="mod-name">MINI</h2>
-        <p class="mod-desc">저는 최저가 센러샵의 서버관리, 봇 테스트, 티켓관리를 담당하고있는 미니라고 해요 ! 잘부탁드려요 !</p>
-        <p class="mod-desc">고객님을 위해 열심히 일하겠습니다 !</p>
-        <p class="mod-note">항상 열심히 하는 <strong>미니</strong>가 되겠습니다!</p>
       </div>
     </div>
 
@@ -1224,35 +1226,7 @@
   </div>
 </section>
 
-  <script>
-    function showSection(id, el) {
-      document.querySelectorAll("section").forEach(sec => {
-        sec.classList.remove("active");
-      });
 
-      const target = document.getElementById(id);
-      if (target) {
-        target.classList.add("active");
-      }
-
-      document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"));
-      if (el) el.classList.add("active");
-
-      // 주소창 hash 변경 (선택사항)
-      history.pushState(null, '', `#${id}`);
-    }
-
-    // 초기 로딩 시 hash 감지
-    window.addEventListener('load', () => {
-      const hash = location.hash.replace('#', '');
-      const section = document.getElementById(hash);
-      if (section) {
-        showSection(hash, document.querySelector(`.nav-link[onclick*="${hash}"]`));
-      } else {
-        showSection('home', document.querySelector('.nav-link[onclick*="home"]'));
-      }
-    });
-  </script>
 
 <section id="webcharge">
   <h1>충전 신청</h1>
