@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>최저가 센러샵</title>
@@ -69,11 +73,11 @@
 
     .nav-link {
       display: block;
-      font-size: 0.95rem;           /* ⬅️ 더 작은 글씨 */
+      font-size: 0.95rem;       
       color: #bbb;
-      padding: 6px 10px;            /* ⬅️ 높이 & 좌우 여백 줄이기 */
+      padding: 6px 10px;         
       border-radius: 6px;
-      margin-bottom: 6px;           /* ⬅️ 항목 간 간격도 줄이기 */
+      margin-bottom: 6px;           
       text-decoration: none;
       cursor: pointer;
       transition: background-color 0.3s ease, color 0.3s ease;
@@ -91,13 +95,13 @@
       font-weight: 600;
     }
 
-    /* 디스코드 입장 버튼 */
     .discord-join-btn {
       margin-top: auto; /* 맨 아래 고정 */
       display: block;
       margin-bottom: 0;
       transform: translateY(-40px);
-      background-color: #5865F2;
+
+      background: rgba(88, 101, 242, 0.2); /* 디스코드 블루 + 투명 */
       color: white;
       text-align: center;
       font-weight: 700;
@@ -105,11 +109,18 @@
       border-radius: 12px;
       text-decoration: none;
       user-select: none;
-      box-shadow: 0 4px 10px rgba(88, 101, 242, 0.6);
-      transition: background-color 0.3s ease;
+
+      backdrop-filter: blur(15px);             /* 배경 블러 */
+      -webkit-backdrop-filter: blur(15px);     /* 사파리 호환 */
+      border: 1px solid rgba(255, 255, 255, 0.2); /* 유리 느낌 테두리 */
+      box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4); /* 퍼지는 블루 그림자 */
+
+      transition: all 0.3s ease;
     }
+
     .discord-join-btn:hover {
-      background-color: #4752c4;
+      background: rgba(88, 101, 242, 0.35); /* hover 시 더 진한 블루 글래스 */
+      box-shadow: 0 6px 25px rgba(88, 101, 242, 0.6);
     }
 
     .main-content {
@@ -230,18 +241,18 @@
     }
 
     .feature-card.safe-payment {
-      background-color: #2a2a2a; /* 예시로 배경색 진하게 */
-      border: 2px solid #4caf50; /* 초록색 테두리 */
+      background-color: #2a2a2a; 
+      border: 2px solid #4caf50; 
     }
 
     .feature-card.safe-payment h3 {
-      color: #4caf50; /* 제목 초록색 */
-      font-size: 1.4rem; /* 크기 약간 키움 */
+      color: #4caf50; 
+      font-size: 1.4rem; 
     }
 
     .feature-card.safe-payment p {
-      color: #a5d6a7; /* 본문도 초록톤으로 */
-      font-size: 1.1rem; /* 본문 크기 약간 키움 */
+      color: #a5d6a7; 
+      font-size: 1.1rem; 
     }
 
     #products h1,
@@ -269,7 +280,7 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* 2열 유지 */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); 
   gap: 20px;
   margin-top: 30px;
 }
@@ -348,7 +359,6 @@
   font-weight: 600;
 }
 
-/* ✅ 구분선 (hr) 스타일 */
 .product-description hr {
   border: none;
   border-top: 1px solid #4f545c;
