@@ -412,3 +412,43 @@ footer {
     white-space: nowrap;
   }
 }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #111;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  header nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  header.active nav ul {
+    display: flex;
+  }
+
+  header nav ul li a {
+    font-size: 1rem;
+  }
+}

@@ -24,3 +24,10 @@ window.addEventListener('load', () => {
     }
   });
 });
+
+const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
+const header = document.querySelector('header');
+
+mobileMenuIcon.addEventListener('click', () => {
+  header.classList.toggle('active');
+});
