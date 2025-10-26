@@ -386,24 +386,29 @@ footer {
 }
 
 @media (max-width: 768px) {
-  header .logo-text {
-    font-size: 1.2rem;
-  }
-  
-  header nav ul li a {
-    font-size: 0.9rem;
-    margin: 0 0.8rem;
+  header {
+    padding: 0.8rem 5%;
   }
 
   header nav ul {
-    gap: 0.8rem;
+    display: flex;
+    gap: 1rem; 
+    flex-wrap: nowrap;
+    justify-content: flex-end; 
   }
-  
-  main .content h1 {
-    font-size: 2rem;
-  }
-  
-  main .content p, main .content ul li {
+
+  header nav ul li a {
     font-size: 0.9rem;
+    white-space: nowrap;
+    padding: 0.3rem 0;
+  }
+
+  header nav ul li {
+    margin: 0 0.4rem;
+  }
+
+  header .logo-text {
+    font-size: 1.2rem;
+    white-space: nowrap;
   }
 }
