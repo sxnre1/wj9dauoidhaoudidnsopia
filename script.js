@@ -1,10 +1,3 @@
-const ctaButton = document.querySelector('.cta-button');
-if (ctaButton) {
-  ctaButton.addEventListener('click', (e) => {
-    window.location.href = 'menu/product.html';
-  });
-}
-
 const faders = document.querySelectorAll('.fade-in');
 
 const appearOptions = {
