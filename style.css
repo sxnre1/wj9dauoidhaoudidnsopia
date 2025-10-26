@@ -384,3 +384,21 @@ footer {
 @media (max-width: 600px) {
   .terms-page .content { margin-top: 30vh; padding: 1rem; }
 }
+
+@media (max-width: 768px) {
+  header .logo-text {
+    font-size: 1.2rem;
+  }
+  
+  header nav ul li a {
+    font-size: 0.9rem;
+  }
+  
+  main .content h1 {
+    font-size: 2rem;
+  }
+  
+  main .content p, main .content ul li {
+    font-size: 0.9rem;
+  }
+}
