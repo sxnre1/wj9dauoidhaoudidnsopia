@@ -25,9 +25,10 @@ window.addEventListener('load', () => {
   });
 });
 
-const mobileMenuIcon = document.querySelector('.mobile-menu-icon');
-const header = document.querySelector('header');
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('header nav');
 
-mobileMenuIcon.addEventListener('click', () => {
-  header.classList.toggle('active');
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  hamburger.classList.toggle('active');
 });
