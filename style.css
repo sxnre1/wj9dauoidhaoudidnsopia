@@ -287,7 +287,6 @@ footer {
   justify-items: center;
 }
 
-/* 카드 스타일 */
 .terms-card {
   background: #fff;
   border-radius: 12px;
@@ -305,7 +304,6 @@ footer {
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
 }
 
-/* 카드 내부 버튼 */
 .terms-card .cta-button {
   display: inline-flex;
   align-items: center;
@@ -385,4 +383,29 @@ footer {
 
 @media (max-width: 600px) {
   .terms-page .content { margin-top: 30vh; padding: 1rem; }
+}
+
+/* 모바일 */
+
+header nav {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    display: none;
+  }
+  
+  .hamburger {
+    display: flex;
+  }
+  
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+  }
+  
+  .nav-mobile.active {
+    display: flex;
+  }
 }
