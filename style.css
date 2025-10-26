@@ -392,6 +392,11 @@ footer {
   
   header nav ul li a {
     font-size: 0.9rem;
+    margin: 0 0.8rem;
+  }
+
+  header nav ul {
+    gap: 0.8rem;
   }
   
   main .content h1 {
