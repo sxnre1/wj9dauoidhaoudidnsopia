@@ -385,6 +385,23 @@ footer {
   .terms-page .content { margin-top: 30vh; padding: 1rem; }
 }
 
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background-color: #111;
+  border-radius: 2px;
+}
+
 header nav {
   display: none;
   flex-direction: column;
@@ -396,33 +413,9 @@ header nav {
   padding: 1rem 1.5rem;
   border-top: 1px solid #ddd;
   gap: 0.8rem;
-}
-
-header nav::before {
-  content: "메뉴";
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  display: block;
-  color: #111;
+  z-index: 100;
 }
 
 header nav.active {
   display: flex;
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0;
-}
-
-header nav ul li a {
-  text-decoration: none;
-  color: #111;
-  font-weight: 500;
-  font-size: 1rem;
-  display: block;
 }
