@@ -24,10 +24,3 @@ window.addEventListener('load', () => {
     }
   });
 });
-
-const hamburger = document.querySelector('.hamburger');
-const navMobile = document.querySelector('.nav-mobile');
-
-hamburger.addEventListener('click', () => {
-  navMobile.classList.toggle('active');
-});
