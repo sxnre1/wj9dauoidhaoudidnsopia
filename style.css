@@ -391,7 +391,6 @@ header nav {
 }
 
 .hamburger-btn {
-  display: none;
   position: absolute;
   right: 5%;
   top: 50%;
@@ -416,6 +415,10 @@ header nav {
 }
 
 @media (max-width: 768px) {
+  .hamburger-btn {
+    display: block !important;
+  }
+
   header nav {
     max-height: 0;
     overflow: hidden;
