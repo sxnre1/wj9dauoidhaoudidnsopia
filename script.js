@@ -1,11 +1,9 @@
 const faders = document.querySelectorAll('.fade-in');
 const hamburger = document.querySelector('.hamburger');
 const btn = document.querySelector(".hamburger-btn");
-const nav = document.querySelector("nav");
 
 btn.addEventListener("click", () => {
   nav.classList.toggle("active");
-  btn.classList.toggle("active");
 });
 
 const appearOptions = {

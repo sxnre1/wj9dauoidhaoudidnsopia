@@ -414,16 +414,6 @@ header nav {
   transform-origin: center;
 }
 
-.hamburger-btn.active span:nth-child(1) {
-  transform: rotate(45deg);
-}
-.hamburger-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-.hamburger-btn.active span:nth-child(3) {
-  transform: rotate(-45deg);
-}
-
 @media (max-width: 768px) {
   header nav {
     max-height: 0;
