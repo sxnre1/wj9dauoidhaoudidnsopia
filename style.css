@@ -393,7 +393,7 @@ header nav {
 .hamburger-btn {
   display: block;
   position: absolute;
-  right: 1.5rem;
+  right: 2rem;
   top: 1rem;
   width: 30px;
   height: 24px;
@@ -411,17 +411,16 @@ header nav {
   margin: 5px 0;
   border-radius: 2px;
   transition: all 0.35s ease;
-  transform-origin: center;
 }
 
 .hamburger-btn.active span:nth-child(1) {
-  transform: rotate(45deg);
+  transform: rotate(45deg) translate(5px, 5px);
 }
 .hamburger-btn.active span:nth-child(2) {
   opacity: 0;
 }
 .hamburger-btn.active span:nth-child(3) {
-  transform: rotate(-45deg);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 @media (max-width: 768px) {
