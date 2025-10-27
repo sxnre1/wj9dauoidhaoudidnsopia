@@ -84,6 +84,18 @@ main {
   text-align: center;
 }
 
+.index-main {
+  min-height: calc(100vh - 100px);
+  padding-top: 100px;
+  padding-bottom: 150px;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
 .hero {
   flex: 1;
   display: flex;
