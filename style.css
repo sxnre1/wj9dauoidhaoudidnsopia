@@ -199,25 +199,25 @@ strong {
   color: #111 !important;
 }
 
-.quote {
-  width: 100%;
-  padding: 2rem 5%;
-  text-align: center;
-  background: none;
-}
-
-.quote-text {
-  font-style: italic;
-  color: #111;
-  font-size: 1.1rem;
+.quote-vertical {
+  position: absolute;
+  bottom: 80px;
+  left: 2%;
+  text-align: left;
   line-height: 1.6;
 }
 
-.quote-author {
+.quote-vertical p {
+  margin: 0;
+  font-style: italic;
+  color: #111;
+  font-size: 1rem;
+}
+
+.quote-vertical .quote-author {
   font-weight: 300;
   color: #555;
   margin-top: 0.5rem;
-  font-size: 1rem;
 }
 
 footer {
