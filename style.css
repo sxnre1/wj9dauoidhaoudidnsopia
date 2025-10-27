@@ -409,6 +409,7 @@ header nav {
   background-color: var(--text-color);
   border-radius: 2px;
   transition: opacity 0.3s ease, transform 0.35s ease;
+  opacity: 1;
 }
 .hamburger-icon:nth-child(1) { top: 0; }
 .hamburger-icon:nth-child(2) { top: 10px; }
