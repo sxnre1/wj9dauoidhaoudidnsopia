@@ -200,10 +200,10 @@ strong {
 }
 
 .quote-vertical {
-  margin-bottom: 2rem;
   padding-left: 0.8%;
   text-align: left;
   line-height: 1.6;
+  margin-bottom: 6rem;
 }
 
 .quote-vertical p {
