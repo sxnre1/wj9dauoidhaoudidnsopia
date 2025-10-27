@@ -1,6 +1,7 @@
 const faders = document.querySelectorAll('.fade-in');
 const hamburger = document.querySelector('.hamburger');
 const btn = document.querySelector(".hamburger-btn");
+const nav = document.querySelector("header nav");
 
 btn.addEventListener("click", () => {
   nav.classList.toggle("active");
