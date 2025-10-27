@@ -391,6 +391,7 @@ header nav {
 }
 
 .hamburger-btn {
+  display: none;
   position: absolute;
   right: 5%;
   top: 50%;
