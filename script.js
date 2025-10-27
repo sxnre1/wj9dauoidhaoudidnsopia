@@ -1,19 +1,11 @@
 const faders = document.querySelectorAll('.fade-in');
 const hamburger = document.querySelector('.hamburger');
-const nav = document.querySelector('header nav');
 const btn = document.querySelector(".hamburger-btn");
-const xIcon = document.querySelectorAll(".x-icon");
+const nav = document.querySelector("nav");
 
 btn.addEventListener("click", () => {
   nav.classList.toggle("active");
-
-  if (nav.classList.contains("active")) {
-    hamburger.forEach(span => span.style.opacity = 0);
-    xIcon.forEach(span => span.style.opacity = 1);
-  } else {
-    hamburger.forEach(span => span.style.opacity = 1);
-    xIcon.forEach(span => span.style.opacity = 0);
-  }
+  btn.classList.toggle("active");
 });
 
 const appearOptions = {
