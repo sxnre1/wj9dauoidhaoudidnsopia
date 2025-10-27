@@ -200,9 +200,8 @@ strong {
 }
 
 .quote-vertical {
-  position: absolute;
-  bottom: 80px;
-  left: 2%;
+  margin-bottom: 2rem;
+  padding-left: 2%;
   text-align: left;
   line-height: 1.6;
 }
