@@ -396,17 +396,24 @@ header nav {
 
 @media (max-width: 768px) {
   header nav {
-    display: none;
+    max-height: 0;
+    overflow: hidden;
     flex-direction: column;
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background-color: #f9f9f9;
-    padding: 1rem 1.5rem;
+    padding: 0 1.5rem;
     border-top: 1px solid #ddd;
     gap: 0.8rem;
     z-index: 100;
+    transition: max-height 0.3s ease-out;
+  }
+
+  header nav.active {
+    max-height: 500px;
+    padding: 1rem 1.5rem;
   }
 
   .hamburger {
@@ -424,9 +431,16 @@ header nav {
     height: 3px;
     background-color: #111;
     border-radius: 2px;
+    transition: all 0.3s ease;
   }
 
-  header nav.active {
-    display: flex;
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
   }
 }
