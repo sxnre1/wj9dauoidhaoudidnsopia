@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/menu/product", "destination": "/menu/product.html" },
+    { "source": "/menu/faq", "destination": "/menu/faq.html" },
+    { "source": "/menu/terms", "destination": "/menu/terms.html" },
+    { "source": "/", "destination": "/index.html" }
+  ]
+}
