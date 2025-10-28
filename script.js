@@ -39,10 +39,13 @@ hamburger.addEventListener('click', () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".menu a");
-  const current = window.location.pathname.split("/").pop();
+  let currentPath = window.location.pathname;
+
+  const fileName = currentPath.split("/").pop() || "index.html";
 
   links.forEach(link => {
-    if (link.getAttribute("href") === current) {
+    const href = link.getAttribute("href").replace(/^\//, "");
+    if (href.endsWith(fileName)) {
       link.classList.add("active");
     }
   });

@@ -28,7 +28,8 @@ body::-webkit-scrollbar-thumb {
 .menu a.active {
   font-weight: bold;
   color: #87CEFA;
-  border-bottom: 2px solid #7289da;
+  border-bottom: 2px solid #0078FF;
+  padding-bottom: 2px;
 }
 
 header {
