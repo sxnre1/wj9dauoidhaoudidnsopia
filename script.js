@@ -36,3 +36,14 @@ hamburger.addEventListener('click', () => {
   nav.classList.toggle('active');
   hamburger.classList.toggle('active');
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".menu a");
+  const current = window.location.pathname.split("/").pop();
+
+  links.forEach(link => {
+    if (link.getAttribute("href") === current) {
+      link.classList.add("active");
+    }
+  });
+});
