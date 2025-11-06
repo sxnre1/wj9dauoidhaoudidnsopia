@@ -143,6 +143,8 @@ window.addEventListener("load", () => {
   }
 
   if (window.innerWidth <= 768) {
-    setTimeout(() => audio.play().catch(() => {}), 500);
+    document.body.addEventListener("click", () => {
+      audio.play().catch(() => {});
+    }, { once: true });
   }
 });
