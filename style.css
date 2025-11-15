@@ -562,10 +562,10 @@ header nav {
 
 .hamburger-btn span {
     display: block;
-    width: 100%;
+    width: 80%;
     height: 3px;
     background-color: #FFFFFF; 
-    margin: 3px 0;
+    margin: 3px auto;
     border-radius: 2px;
     transition: all 0.35s ease;
     transform-origin: center;
