@@ -557,13 +557,19 @@ header nav {
     top: 100%;
     left: 0;
     width: 100%;
+
     background-color: #f9f9f9;
     padding: 0 1.5rem;
-    border-top: 1px solid #ddd;
+
+    border-top: none !important;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
     gap: 0.8rem;
     z-index: 900;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), padding 0.5s ease-in-out;
+
+    transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+                padding 0.5s ease-in-out;
   }
 
   header nav.active {
@@ -573,5 +579,16 @@ header nav {
 
   .quote-vertical {
     display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  header nav {
+    position: static !important;
+    background: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
 }
