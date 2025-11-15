@@ -529,7 +529,7 @@ header nav {
     
     border: 1px solid #0078FF;
     border-radius: 12px;
-    padding: 8px 12px;
+    padding: 6px 10px;
     
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 70, 150, 0.3); 
@@ -540,7 +540,7 @@ header nav {
 
 .hamburger-container:hover {
     box-shadow: 0 4px 12px rgba(0, 70, 150, 0.5);
-    transform: translateY(-50%) scale(1.05);
+    transform: translateY(-50%) scale(1.03);
 }
 
 
