@@ -58,7 +58,3 @@ function showPopup(message) {
   document.body.appendChild(popup);
   setTimeout(() => popup.remove(), 1500);
 }
-
-if (window.location.pathname === "/discord") {
-  window.location.href = "https://discord.gg/ASbGCDYWaD";
-}
