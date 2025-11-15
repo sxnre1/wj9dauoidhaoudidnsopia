@@ -521,7 +521,7 @@ header nav {
 
 .hamburger-container {
     position: absolute;
-    right: 2%; /* [수정] 오른쪽 끝에 더 가깝게(왼쪽 이동) */
+    right: 2%;
     top: 50%;
     transform: translateY(-50%);
     
@@ -529,7 +529,7 @@ header nav {
     
     border: 1px solid #0078FF;
     border-radius: 12px;
-    padding: 8px 10px; /* [수정] 패딩을 늘려 컨테이너 크기 확대 */
+    padding: 12px 10px;
     
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 70, 150, 0.3); 
