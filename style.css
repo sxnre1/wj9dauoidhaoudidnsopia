@@ -514,6 +514,11 @@ footer {
   }
 }
 
+header {
+  position: relative;
+  z-index: 999;
+}
+
 header nav {
   display: flex;
   gap: 1.5rem;
@@ -558,15 +563,14 @@ header nav {
     left: 0;
     width: 100%;
 
-    background-color: #f9f9f9;
+    background-color: #f9f9f9 !important;
     padding: 0 1.5rem;
 
     border-top: none !important;
-
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 
     gap: 0.8rem;
-    z-index: 900;
+    z-index: 998 !important;
 
     transition: max-height 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
                 padding 0.5s ease-in-out;
