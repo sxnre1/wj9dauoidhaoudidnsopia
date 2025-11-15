@@ -5,6 +5,10 @@
   font-family: 'Inter', sans-serif;
 }
 
+html {
+  overflow-y: scroll; /* ⚡ 메뉴 흔들림 방지용 추가 */
+}
+
 body {
   color: #111;
   background-color: #fff;
